@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+
 group 'ftc-tomsk-java-tests-9673-vershinin'
 version '1.0-SNAPSHOT'
 
