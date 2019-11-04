@@ -1,0 +1,3 @@
+rootProject.name = 'ftc-tomsk-java-tests-9673-vershinin'
+include 'Test1'
+
