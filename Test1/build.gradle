@@ -3,7 +3,7 @@ plugins {
 }
 
 
-group 'ftc-tomsk-java-tests-9673-vershinin'
+group 'ftc.tomsk.java.tests'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
