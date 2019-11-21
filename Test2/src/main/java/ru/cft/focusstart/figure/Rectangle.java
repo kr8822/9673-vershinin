@@ -28,7 +28,8 @@ public class Rectangle implements Figure {
     }
 
     @Override
-    public double[] getParameters() {
-        return new double[]{this.calcArea(), this.calcPerimeter(), this.largeSide, this.smallSide, this.calcDiagonal()};
+    public String printDescription() {
+        return String.format("Тип фигуры: Прямоугольник\nПлощадь: %.2f\nПериметр: %.2f\nДлина: %.2f\nШирина: %.2f\nДлина диагонали %.2f\n",
+                this.calcArea(), this.calcPerimeter(), this.largeSide, this.smallSide, this.calcDiagonal());
     }
 }

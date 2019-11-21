@@ -9,7 +9,8 @@ public class Square extends Rectangle{
     }
 
     @Override
-    public double[] getParameters() {
-        return new double[]{this.calcArea(), this.calcPerimeter(), this.side, this.calcDiagonal()};
+    public String printDescription() {
+        return String.format("Тип фигуры: Квадрат\nПлощадь: %.2f\nПериметр: %.2f\nДлина стороны: %.2f\nДлина диагонали %.2f\n",
+                this.calcArea(), this.calcPerimeter(), this.side, this.calcDiagonal());
     }
 }
