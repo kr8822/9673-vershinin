@@ -12,7 +12,7 @@ public class MultiThreadFabric {
     public final static int M = 3;
     public final static int TM = 800;
 
-    public static ArrayBlockingQueue<Resourse> storage = new ArrayBlockingQueue<Resourse>(S);
+    public static ArrayBlockingQueue<Resource> storage = new ArrayBlockingQueue<Resource>(S);
 
     private static final Logger log = LoggerFactory.getLogger(MultiThreadFabric.class);
 
@@ -21,8 +21,8 @@ public class MultiThreadFabric {
             try {
                 while (true) {
                     Thread.sleep(TN);
-                    Resourse res;
-                    res = new Resourse();
+                    Resource res;
+                    res = new Resource();
                     log.info("Resource N {} was create", res.getId());
                     storage.put(res);
                     log.info("Resource N {} push to storage", res.getId());
@@ -34,7 +34,7 @@ public class MultiThreadFabric {
         Runnable taskConsumers = () -> {
             try {
                 while (true) {
-                    Resourse res = storage.take();
+                    Resource res = storage.take();
                     log.info("Resource N {} take from storage", res.getId());
                     Thread.sleep(TM);
                     log.info("Resource N {} was consumed", res.getId());

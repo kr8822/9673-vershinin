@@ -1,11 +1,11 @@
 package ru.cft.focusstart;
 
 
-public class Resourse {
+public class Resource {
     private int id;
     private static int numberId = 0;
 
-    Resourse() {
+    Resource() {
         this.id = generateId();
     }
 
