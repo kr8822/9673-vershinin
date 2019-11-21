@@ -49,6 +49,7 @@ public class ParametersFigureReader implements Reader {
     public String[] read() throws Exception {
         String[] args = reader.read();
         FigureType figureType = FigureType.valueOf(args[0]);
+
         double[] parameters = new double[args.length - 1];
         for (int i = 0; i < parameters.length; i++) {
             parameters[i] = Double.valueOf(args[i + 1]);

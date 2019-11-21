@@ -22,37 +22,35 @@ public class MultiThreadFabric {
                 while (true) {
                     Thread.sleep(TN);
                     Resourse res;
-                    synchronized (MultiThreadFabric.class) {
-                        res = new Resourse();
-                    }
-                    log.info("Resource №{} was create", res.getId());
+                    res = new Resourse();
+                    log.info("Resource N {} was create", res.getId());
                     storage.put(res);
-                    log.info("Resource №{} push to storage", res.getId());
+                    log.info("Resource N {} push to storage", res.getId());
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
         };
         Runnable taskConsumers = () -> {
             try {
                 while (true) {
                     Resourse res = storage.take();
-                    log.info("Resource №{} take from storage", res.getId());
+                    log.info("Resource N {} take from storage", res.getId());
                     Thread.sleep(TM);
-                    log.info("Resource №{} was consumed", res.getId());
+                    log.info("Resource N {} was consumed", res.getId());
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
         };
         Thread[] fabrics = new Thread[N];
         for (int i = 0; i < N; i++) {
-            fabrics[i] = new Thread(taskFabric, "Fabric №" + (i + 1));
+            fabrics[i] = new Thread(taskFabric, "Fabric N " + (i + 1));
             fabrics[i].start();
         }
         Thread[] consumers = new Thread[M];
         for (int i = 0; i < M; i++) {
-            consumers[i] = new Thread(taskConsumers, "Consumer №" + (i + 1));
+            consumers[i] = new Thread(taskConsumers, "Consumer N " + (i + 1));
             consumers[i].start();
         }
     }
