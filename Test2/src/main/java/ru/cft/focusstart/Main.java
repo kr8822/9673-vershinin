@@ -21,7 +21,7 @@ public class Main {
         try {
             File fileInput = new File(args[0]);
             if (fileInput.exists() && fileInput.length() != 0) {
-                result = new ParametersFigureReader(new DataReaderFromFile(new FileInputStream(fileInput))).read()[0];
+                result = new ParametersFigureReader(new DataReaderFromFile(fileInput)).read()[0];
             } else {
                 throw new FIleNotFoundOrEmptyException("File doesn't exist or empty");
             }
