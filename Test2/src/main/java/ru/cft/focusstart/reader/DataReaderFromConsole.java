@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DataReaderFromConsole implements Reader{
+public class DataReaderFromConsole implements Reader {
     InputStream inputStream;
 
     public DataReaderFromConsole(InputStream inputStream) {
@@ -21,30 +21,30 @@ public class DataReaderFromConsole implements Reader{
             System.out.println("You input wrong type. Please, choose and input type from this: CIRCLE, RECTANGLE, SQUARE");
             buffer = scanner.nextLine();
         }
-        ArrayList<String> arrayOFParameters = new ArrayList<String>();
-        arrayOFParameters.add(buffer);
-        switch (arrayOFParameters.get(0)) {
+        ArrayList<String> arrayOfParameters = new ArrayList<>();
+        arrayOfParameters.add(buffer);
+        switch (arrayOfParameters.get(0)) {
             case "RECTANGLE":
-                arrayOFParameters.add(readUnsignedDoubleNumber(scanner, "Input double number for first side"));
-                arrayOFParameters.add(readUnsignedDoubleNumber(scanner, "Input double number for second side"));
+                arrayOfParameters.add(readUnsignedDoubleNumber(scanner, "Input double number for first side above zero"));
+                arrayOfParameters.add(readUnsignedDoubleNumber(scanner, "Input double number for second side above zero"));
                 break;
             default:
-                arrayOFParameters.add(readUnsignedDoubleNumber(scanner, "Input double number for characteristic size"));
+                arrayOfParameters.add(readUnsignedDoubleNumber(scanner, "Input double number for characteristic size above zero"));
                 break;
         }
-        return arrayOFParameters.toArray(new String[arrayOFParameters.size()]);
+        return arrayOfParameters.toArray(new String[arrayOfParameters.size()]);
     }
 
     private String readUnsignedDoubleNumber(Scanner scanner, String message) {
-        System.out.println(message);
-        while (!scanner.hasNextDouble()) {
-            scanner.nextLine();
-        }
-        String result = scanner.nextLine();
-        if(Integer.valueOf(result) > 0){
-            return result;
-        } else {
-            return readUnsignedDoubleNumber(scanner, message);
+        while (true) {
+            System.out.println(message);
+            while (!scanner.hasNextDouble()) {
+                scanner.nextLine();
+            }
+            String result = scanner.nextLine();
+            if (Integer.valueOf(result) > 0) {
+                return result;
+            }
         }
     }
 }
