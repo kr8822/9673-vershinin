@@ -2,8 +2,6 @@ package ru.cft.focusstart;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 import ru.cft.focusstart.exceptions.FIleNotFoundOrEmptyException;
 import ru.cft.focusstart.reader.*;
