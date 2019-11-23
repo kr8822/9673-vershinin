@@ -42,7 +42,7 @@ public class DataReaderFromConsole implements Reader {
                 scanner.nextLine();
             }
             String result = scanner.nextLine();
-            if (Integer.valueOf(result) > 0) {
+            if (Double.parseDouble(result) > 0) {
                 return result;
             }
         }

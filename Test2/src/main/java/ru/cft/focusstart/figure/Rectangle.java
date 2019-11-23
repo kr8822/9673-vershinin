@@ -1,6 +1,5 @@
 package ru.cft.focusstart.figure;
 
-
 public class Rectangle implements Figure {
     private double largeSide;
     private double smallSide;

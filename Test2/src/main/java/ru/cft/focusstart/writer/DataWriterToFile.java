@@ -5,9 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class DataWriterToFile implements Writer {
-    File fileOutput;
+    private File fileOutput;
 
-    public DataWriterToFile(File fileOutput){
+    public DataWriterToFile(File fileOutput) {
         this.fileOutput = fileOutput;
     }
 

@@ -17,7 +17,7 @@ public class Circle implements Figure {
 
     @Override
     public String printDescription() {
-        return String.format("Тип фигуры: Круг\nПлощадь: %.2f\nПериметр: %.2f\nРадиус: %.2f\nДиаметр %f\n",
-               this.calcArea(), this.calcPerimeter(), this.radius, 2 * this.radius);
+        return String.format("Тип фигуры: Круг\nПлощадь: %.2f\nПериметр: %.2f\nРадиус: %.2f\nДиаметр %.2f\n",
+                this.calcArea(), this.calcPerimeter(), this.radius, 2 * this.radius);
     }
 }

@@ -2,6 +2,8 @@ package ru.cft.focusstart;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import ru.cft.focusstart.exceptions.FIleNotFoundOrEmptyException;
 import ru.cft.focusstart.reader.*;
@@ -17,23 +19,35 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String result;
         try {
-            File fileInput = new File(args[0]);
-            if (fileInput.exists() && fileInput.length() != 0) {
-                result = new ParametersFigureReader(new DataReaderFromFile(fileInput)).read()[0];
+            if (args.length >= 1) {
+                File fileInput = new File(args[0]);
+                if (fileInput.exists() && fileInput.length() != 0) {
+                    String[] parametersOfFigure = new DataReaderFromFile(fileInput).read();
+                    result = FigureCreature.valueOf(parametersOfFigure[0]).createFigure(parametersOfFigure).printDescription();
+                } else {
+                    throw new FIleNotFoundOrEmptyException("File doesn't exist or empty");
+                }
             } else {
-                throw new FIleNotFoundOrEmptyException("File doesn't exist or empty");
+                String[] parametersOfFigure = new DataReaderFromConsole(System.in).read();
+                result = FigureCreature.valueOf(parametersOfFigure[0]).createFigure(parametersOfFigure).printDescription();
             }
         } catch (Exception e) {
             log.error("Name exception: {}, Message: {}", e.getClass().getCanonicalName(), e.getMessage());
-            result = new ParametersFigureReader(new DataReaderFromConsole(System.in)).read()[0];
+            String[] parametersOfFigure = new DataReaderFromConsole(System.in).read();
+            result = FigureCreature.valueOf(parametersOfFigure[0]).createFigure(parametersOfFigure).printDescription();
         }
 
+
         try {
-            File fileOutput = new File(args[1]);
-            new DataWriter(new DataWriterToFile(fileOutput)).write(result);
+            if (args.length >= 2) {
+                File fileOutput = new File(args[1]);
+                new DataWriterToFile(fileOutput).write(result);
+            } else {
+                new DataWriterToConsole().write(result);
+            }
         } catch (Exception e) {
             log.error("Name exception: {}, Message: {}", e.getClass().getCanonicalName(), e.getMessage());
-            new DataWriter(new DataWriterToConsole()).write(result);
+            new DataWriterToConsole().write(result);
         }
     }
 

@@ -1,9 +1,9 @@
 package ru.cft.focusstart.figure;
 
-public class Square extends Rectangle{
+public class Square extends Rectangle {
     private double side;
 
-    public Square(double side){
+    public Square(double side) {
         super(side, side);
         this.side = side;
     }
