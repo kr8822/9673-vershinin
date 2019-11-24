@@ -1,5 +1,7 @@
 package ru.cft.focusstart.reader;
 
 public interface Reader {
-    String[] read() throws Exception;
+    boolean hasNext();
+    String readString(String message);
+    double readDouble(String message);
 }
