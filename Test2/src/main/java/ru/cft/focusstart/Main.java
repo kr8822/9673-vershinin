@@ -16,7 +16,7 @@ public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String result;
         try {
             if (args.length >= 1) {
