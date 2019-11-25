@@ -17,38 +17,36 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        String result;
+        Figure result;
         try {
-            if (args.length >= 1) {
-                File fileInput = new File(args[0]);
-                if (fileInput.exists() && fileInput.length() != 0) {
-                    String[] parametersOfFigure = new DataReaderFromFile(fileInput).read();
-                    result = FigureCreature.valueOf(parametersOfFigure[0]).createFigure(parametersOfFigure).printDescription();
-                } else {
-                    throw new FIleNotFoundOrEmptyException("File doesn't exist or empty");
-                }
-            } else {
-                String[] parametersOfFigure = new DataReaderFromConsole(System.in).read();
-                result = FigureCreature.valueOf(parametersOfFigure[0]).createFigure(parametersOfFigure).printDescription();
-            }
+            result = getFigure(args);
         } catch (Exception e) {
             log.error("Name exception: {}, Message: {}", e.getClass().getCanonicalName(), e.getMessage());
-            String[] parametersOfFigure = new DataReaderFromConsole(System.in).read();
-            result = FigureCreature.valueOf(parametersOfFigure[0]).createFigure(parametersOfFigure).printDescription();
+            result = new FigureReader(new ConsoleReader(System.in)).read();
         }
 
 
         try {
             if (args.length >= 2) {
                 File fileOutput = new File(args[1]);
-                new DataWriterToFile(fileOutput).write(result);
+                new DataWriterToFile(fileOutput).write(result.printDescription());
             } else {
-                new DataWriterToConsole().write(result);
+                new DataWriterToConsole().write(result.printDescription());
             }
         } catch (Exception e) {
             log.error("Name exception: {}, Message: {}", e.getClass().getCanonicalName(), e.getMessage());
-            new DataWriterToConsole().write(result);
+            new DataWriterToConsole().write(result.printDescription());
         }
     }
 
+	public static Figure getFigure(String[] args){
+		if (args.length >= 1) {
+			File fileInput = new File(args[0]);
+			if (fileInput.exists() && fileInput.length() != 0) {
+				return new FugureReader(new FileReader(fileInput)).read();
+			}
+		}
+		return new FigureReader(new ConsoleReader(System.in)).read();
+
+	}
 }
